@@ -1,4 +1,4 @@
-// Imports
+//! Imports
 const questionNumber = document.getElementById("questionNumber"); // Question Number
 const question = document.getElementById("question"); // Question
 
@@ -12,3 +12,14 @@ const option1 = document.getElementById("option4");
 const btnNext = document.getElementById("btnNext");
 const btnPrevious = document.getElementById("btnPrevious");
 const btnSave = document.getElementById("btnSave");
+
+//! Questions
+// dummy data
+const questions = [
+  {
+    questionNumber: 1,
+    question: "Something",
+    answers: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
+    correctAnswerIndex: 1,
+  },
+];
