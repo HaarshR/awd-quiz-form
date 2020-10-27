@@ -9,6 +9,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./style.css" />
     <title>Quiz</title>
   </head>
   <body>
@@ -18,11 +19,70 @@
           <h1>Quiz Form</h1>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
+      <div class="row my-5">
+        <div class="col-12 offset-sm-2 col-sm-8">
           <!-- Slider for quiz -->
-          <div id="quiz-slider">
-
+          <div id="quiz-slider" class="card">
+            <div class="container">
+              <div class="row p-3">
+                <div class="col-12">
+                  <h2>Question #</h2>
+                  <p>What is ...... ?</p>
+                </div>
+              </div>
+              <div class="row px-3">
+                <div class="col-12">
+                  <div class="form">
+                    <div class="form-group">
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          id="customRadio1"
+                          name="customRadio"
+                          class="custom-control-input"
+                        />
+                        <label class="custom-control-label" for="customRadio1">
+                            Option 1
+                        </label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          id="customRadio2"
+                          name="customRadio"
+                          class="custom-control-input"
+                        />
+                        <label class="custom-control-label" for="customRadio2">
+                            Option 2
+                        </label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          id="customRadio2"
+                          name="customRadio"
+                          class="custom-control-input"
+                        />
+                        <label class="custom-control-label" for="customRadio2">
+                            Option 3
+                        </label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          id="customRadio2"
+                          name="customRadio"
+                          class="custom-control-input"
+                        />
+                        <label class="custom-control-label" for="customRadio2">
+                            Option 4
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
