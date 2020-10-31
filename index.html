@@ -34,7 +34,7 @@
               <div class="row p-3">
                 <div class="col-9">
                   <h2 id="questionNumber">Question #</h2>
-                  <p id="question">What is ...... ?</p>
+                  <p id="question"></p>
                 </div>
                 <div
                   class="col-3 py-4 text-center d-flex justify-content-center"
@@ -56,7 +56,7 @@
                           class="custom-control-input"
                         />
                         <label class="custom-control-label" for="option1">
-                          Option 1
+                          <span id='opt1'></span>
                         </label>
                       </div>
                       <div class="custom-control custom-radio pb-3">
@@ -67,7 +67,7 @@
                           class="custom-control-input"
                         />
                         <label class="custom-control-label" for="option2">
-                          Option 2
+                          <span id='opt2'></span>
                         </label>
                       </div>
                       <div class="custom-control custom-radio pb-3">
@@ -78,14 +78,14 @@
                           class="custom-control-input"
                         />
                         <label class="custom-control-label" for="option3">
-                          Option 3
+                          <span id='opt3'></span>
                         </label>
                       </div>
                       <div class="custom-control custom-radio pb-3">
-                        <input type="radio" id="option4" name=answer"
+                        <input type="radio" id="option4" name="answer"
                         class="custom-control-input" />
                         <label class="custom-control-label" for="option4">
-                          Option 4
+                          <span id='opt4'></span>
                         </label>
                       </div>
                     </div>
@@ -101,12 +101,12 @@
           <button id="btnPrevious" class="btn btn-light mx-1 px-5">
             Previous
           </button>
-          <button id="btnNext" class="btn btn-primary mx-1 px-5">Next</button>
+          <button id="btnNext" class="btn btn-primary mx-1 px-5" onclick="next()">Next</button>
         </div>
       </div>
     </div>
 
-    <script src="./index.js"></script>
+    <script src="index.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
