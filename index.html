@@ -33,7 +33,7 @@
             <div class="container">
               <div class="row p-3">
                 <div class="col-9">
-                  <h2 id="questionNumber">Question #</h2>
+                  <h2 id="questionNumber"></h2>
                   <p id="question"></p>
                 </div>
                 <div
@@ -51,41 +51,45 @@
                       <div class="custom-control custom-radio pb-3">
                         <input
                           type="radio"
-                          id="option1"
+                          value="1"
                           name="answer"
                           class="custom-control-input"
                         />
                         <label class="custom-control-label" for="option1">
-                          <span id='opt1'></span>
+                          <span id="option1Label"></span>
                         </label>
                       </div>
                       <div class="custom-control custom-radio pb-3">
                         <input
                           type="radio"
-                          id="option2"
+                          value="2"
                           name="answer"
                           class="custom-control-input"
                         />
                         <label class="custom-control-label" for="option2">
-                          <span id='opt2'></span>
+                          <span id="option2Label"></span>
                         </label>
                       </div>
                       <div class="custom-control custom-radio pb-3">
                         <input
                           type="radio"
-                          id="option3"
+                          value="3"
                           name="answer"
                           class="custom-control-input"
                         />
                         <label class="custom-control-label" for="option3">
-                          <span id='opt3'></span>
+                          <span id="option3Label"></span>
                         </label>
                       </div>
                       <div class="custom-control custom-radio pb-3">
-                        <input type="radio" id="option4" name="answer"
-                        class="custom-control-input" />
+                        <input
+                          type="radio"
+                          value="4"
+                          name="answer"
+                          class="custom-control-input"
+                        />
                         <label class="custom-control-label" for="option4">
-                          <span id='opt4'></span>
+                          <span id="option4Label"></span>
                         </label>
                       </div>
                     </div>
@@ -98,10 +102,20 @@
       </div>
       <div class="row">
         <div class="col-12 text-center">
-          <button id="btnPrevious" class="btn btn-light mx-1 px-5">
+          <button
+            id="btnPrevious"
+            class="btn btn-light mx-1 px-5"
+            onclick="previousQuestion()"
+          >
             Previous
           </button>
-          <button id="btnNext" class="btn btn-primary mx-1 px-5" onclick="next()">Next</button>
+          <button
+            id="btnNext"
+            class="btn btn-primary mx-1 px-5"
+            onclick="nextQuestion()"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
