@@ -173,6 +173,11 @@ const inputChecked = () => {
 const updateProgressBar = () => {
   let completion = (results.length / questions.length) * 100;
   progressBar.style.width = completion + "%";
+
+  if (completion === 100) {
+    progressBar.classList.remove("bg-warning");
+    progressBar.classList.add("bg-success");
+  }
 };
 
 const validateAnswers = () => {
