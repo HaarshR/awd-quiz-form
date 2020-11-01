@@ -14,41 +14,35 @@
   </head>
   <body>
     <div class="container">
-      <div class="row my-3">
+      <div class="row my-5">
         <div class="col-12 text-center">
           <h1 class="display-3">Quiz Form</h1>
         </div>
       </div>
       <div class="row">
-        <div class="font-weight-bold py-4 text-center col-12">Progress</div>
-      </div>
-      <div class="row">
-        <div class="offset-2 col-8 text-center my-auto">
-          <div class="progress">
-            <div class="progress-bar" id="progressBar"></div>
-          </div>
+        <div class="col-12 text-center">
+          <h2>
+            Score : <span id="score"></span> /
+            <span id="potentialScore"></span> 😁
+          </h2>
         </div>
       </div>
-      <div class="row my-5">
+      <div class="row py-3">
+        <div class="col-12 text-center">
+          <button class="btn btn-white" id="btnAgain" onclick="playAgain()">
+            🔁 Again?
+          </button>
+        </div>
+      </div>
+      <div class="row my-3">
         <div class="col-12 offset-sm-2 col-sm-8">
           <!-- Slider for quiz -->
           <div id="quiz-slider" class="card">
             <div class="container">
               <div class="row p-3">
-                <div class="col-9">
+                <div class="col-12">
                   <h2 id="questionNumber"></h2>
                   <p id="question"></p>
-                </div>
-                <div
-                  class="col-3 py-4 text-center d-flex justify-content-center"
-                >
-                  <button
-                    id="btnSave"
-                    class="btn btn-success"
-                    onclick="validateAnswers()"
-                  >
-                    Submit Quiz
-                  </button>
                 </div>
               </div>
               <div class="row px-3">
@@ -67,7 +61,7 @@
                               name="answers"
                               id="option1"
                               value="1"
-                              onclick="setAnswerOption(0)"
+                              disabled
                             />
                             <label
                               class="form-check-label"
@@ -84,7 +78,7 @@
                               name="answers"
                               id="option2"
                               value="2"
-                              onclick="setAnswerOption(1)"
+                              disabled
                             />
                             <label
                               class="form-check-label"
@@ -101,7 +95,7 @@
                               name="answers"
                               id="option3"
                               value="3"
-                              onclick="setAnswerOption(2)"
+                              disabled
                             />
                             <label
                               class="form-check-label"
@@ -118,7 +112,7 @@
                               name="answers"
                               id="option4"
                               value="4"
-                              onclick="setAnswerOption(3)"
+                              disabled
                             />
                             <label
                               class="form-check-label"
@@ -157,8 +151,7 @@
         </div>
       </div>
     </div>
-
-    <script src="index.js"></script>
+    <script src="./results.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -67,6 +67,8 @@ request.onerror = function (event) {
 };
 // DATABASE END
 
+let storage = window.localStorage;
+
 //! QUESTIONS
 let currentIndex = 0;
 let questions;
@@ -74,9 +76,16 @@ let questions;
 let results = [];
 
 //! Imports
+const progressBar = document.getElementById("progressBar");
 const questionNumber = document.getElementById("questionNumber"); // Question Number
 const question = document.getElementById("question"); // Question
 
+let inputOptions = [
+  document.getElementById("option1"),
+  document.getElementById("option2"),
+  document.getElementById("option3"),
+  document.getElementById("option4"),
+];
 // Labels for answers
 const option1Label = document.getElementById("option1Label");
 const option2Label = document.getElementById("option2Label");
@@ -86,9 +95,10 @@ const option4Label = document.getElementById("option4Label");
 // Buttons
 const btnNext = document.getElementById("btnNext");
 const btnPrevious = document.getElementById("btnPrevious");
-// const btnSave = document.getElementById("btnSave");
+const btnSave = document.getElementById("btnSave");
+btnSave.disabled = true;
 
-const form = document.getElementsByClassName("form-group");
+// const form = document.getElementsByClassName("form-group");
 
 //start the quiz
 window.onload = function () {
@@ -123,6 +133,8 @@ const nextQuestion = () => {
   if (currentIndex != questions.length - 1) {
     currentIndex += 1;
     setQuestion(currentIndex);
+    inputChecked();
+    updateProgressBar();
   }
 };
 
@@ -130,5 +142,41 @@ const previousQuestion = () => {
   if (currentIndex !== 0) {
     currentIndex -= 1;
     setQuestion(currentIndex);
+    inputChecked();
+    updateProgressBar();
   }
+};
+
+const setAnswerOption = (answerOption) => {
+  let currentOption = {
+    question: currentIndex,
+    option: answerOption,
+  };
+  results[currentIndex] = currentOption;
+  console.log(results);
+  checkCompletion();
+  updateProgressBar();
+};
+
+const checkCompletion = () => {
+  if (results.length === questions.length) {
+    btnSave.disabled = false;
+  }
+};
+
+const inputChecked = () => {
+  if (results[currentIndex]) {
+    inputOptions[results[currentIndex].option].checked = true;
+  }
+};
+
+const updateProgressBar = () => {
+  let completion = (results.length / questions.length) * 100;
+  progressBar.style.width = completion + "%";
+};
+
+const validateAnswers = () => {
+  storage.setItem("answers", JSON.stringify(results));
+  storage.setItem("questions", JSON.stringify(questions));
+  window.location.replace("results.html");
 };
