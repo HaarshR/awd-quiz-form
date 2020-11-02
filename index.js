@@ -34,14 +34,16 @@ let data = [
 //request to open database
 let request = indexedDB.open("questions", 1);
 let db;
-
+// onupgradeneeded is triggered when a database of a bigger version number than the existing stored database is loaded.
 request.onupgradeneeded = function (event) {
   db = event.target.result;
 
   let ques;
+  //createObjectStore is use to create a new store for objects
   ques = db.createObjectStore("questions", { keyPath: "questionNumber" });
+  //objectStore returns an object store that has already been added
   ques = request.transaction.objectStore("questions");
-
+ //createIndex create new data point for each record.
   ques.createIndex("questionNumber", "questionNumber", { unique: true });
   ques.createIndex("question", "question", { unique: true });
   ques.createIndex("answers", "answers", { unique: false });
