@@ -1,17 +1,19 @@
-let storage = window.localStorage;
+let storage = window.localStorage; // Local Stogra
 //! DATA
+// Retrieve the data that was set in Local Storage
 let results = JSON.parse(storage.getItem("answers"));
 let questions = JSON.parse(storage.getItem("questions"));
-console.log(results);
-console.log(questions);
+console.log(results); // for testing
+console.log(questions); // for testing
 
 //! Imports
-const potentialScore = document.getElementById("potentialScore");
-const score = document.getElementById("score");
+const potentialScore = document.getElementById("potentialScore"); // Score that can be obtained (high score)
+const score = document.getElementById("score"); // Score that the user got
 
 const questionNumber = document.getElementById("questionNumber"); // Question Number
 const question = document.getElementById("question"); // Question
 
+// Radio buttons
 let inputOptions = [
   document.getElementById("option1"),
   document.getElementById("option2"),
@@ -27,19 +29,23 @@ let inputLabels = [
 ];
 
 // Buttons
-const btnNext = document.getElementById("btnNext");
-const btnPrevious = document.getElementById("btnPrevious");
-const btnAgain = document.getElementById("btnAgain");
+const btnNext = document.getElementById("btnNext"); // Next button
+const btnPrevious = document.getElementById("btnPrevious"); // Previous button
+const btnAgain = document.getElementById("btnAgain"); // Try again button
 
-let currentIndex = 0;
+let currentIndex = 0; // Current question
 
+// When page loads
 window.onload = function () {
   setTimeout(() => {
-    calculateScore();
-    setQuestion(currentIndex);
+    calculateScore(); // Score that the user obtained is calculated
+    setQuestion(currentIndex); // The questions are set
   }, 1000);
 };
 
+/*
+  Function to set the different question details (question number, question, answers)
+*/
 const setQuestion = (index) => {
   let questionData = questions[index];
   let resultData;
@@ -57,66 +63,89 @@ const setQuestion = (index) => {
     label.innerText = questionData.answers[index];
   });
 
+  // The color of the correct answer and the answer the user chose is set
+  // If the option the user chose is equivalent to the correct answer, only one label is updated
   if (resultData.option === questionData.correctAnswerIndex) {
-    inputLabels[questionData.correctAnswerIndex].classList.add("text-success");
+    inputLabels[questionData.correctAnswerIndex].classList.add("text-success"); // Correct answer
   } else {
-    inputLabels[questionData.correctAnswerIndex].classList.add("text-success");
-    inputLabels[resultData.option].classList.add("text-danger");
+    // If the answer is wrong, the correct answer label is changed to green and the user's choice is set to red (text-success, text-danger)
+    inputLabels[questionData.correctAnswerIndex].classList.add("text-success"); // Correct answer
+    inputLabels[resultData.option].classList.add("text-danger"); // User's choice
   }
 
-  inputChecked();
+  inputChecked(); // Updated the check property corresponding to the user's choice
 };
 
+/**
+ * Function to start the game again
+ * Clears the Local Storage and navigates to the index page
+ */
 const playAgain = () => {
   storage.clear();
   window.location.replace("/");
 };
 
+/**
+ * Function to calculate the user's score
+ */
 const calculateScore = () => {
-  potentialScore.innerText = questions.length;
-  let finalScore = 0;
+  potentialScore.innerText = questions.length; // Potential (maximum) score is the total number of questions that can be answered
+  let finalScore = 0; // User's score
 
+  // Check each questions and compared the index of the correct answer to what answer the user had chosen
   questions.forEach((question, index) => {
     if (results[index].option === question.correctAnswerIndex) {
-      finalScore += 1;
+      finalScore += 1; // Increment score
     }
   });
 
-  score.innerText = finalScore;
+  score.innerText = finalScore; // Set user's final score
 };
 
+/**
+ * Function to clear relevant classes attached to the answer labels
+ */
 const resetLabels = () => {
-  inputLabels.forEach((label, index) => {
+  inputLabels.forEach((label) => {
+    // Remove text-success css class if it was present
     if (label.classList.contains("text-success")) {
       label.classList.remove("text-success");
     }
+    // Remove text-danger css class if it was present
     if (label.classList.contains("text-danger")) {
       label.classList.remove("text-danger");
     }
   });
 };
 
+// Function that moves to the next question
 const nextQuestion = () => {
+  // Checks if there are any questions next
   if (currentIndex != questions.length - 1) {
-    currentIndex += 1;
-    resetLabels();
-    setQuestion(currentIndex);
-    inputChecked();
+    currentIndex += 1; // Updates current question number
+    resetLabels(); // Reset styling on all the answer labels
+    setQuestion(currentIndex); // Updates current question on screen
+    inputChecked(); // Checks if any previous input was checked
   }
 };
 
+// Function that moves to the previous question
 const previousQuestion = () => {
+  // Checks if there are any questions previously
   if (currentIndex !== 0) {
-    currentIndex -= 1;
-    resetLabels();
-    setQuestion(currentIndex);
-    inputChecked();
+    currentIndex -= 1; // Updates current question number
+    resetLabels(); // Reset styling on all the answer labels
+    setQuestion(currentIndex); // Updates current question on screen
+    inputChecked(); // Checks if any previous input was checked
   }
 };
+
+/**
+ * Function that 'checks' the radio button when moving to the next or previous question.
+ * This ensures that the radio button that is checked corresponds to what option the user had chosen.
+ */
 const inputChecked = () => {
   if (results[currentIndex]) {
-    inputOptions[results[currentIndex].option].checked = true;
+    inputOptions[results[currentIndex].option].checked = true; // Checks the appropriate radio button
   }
 };
-
-const checkScore = () => {};
